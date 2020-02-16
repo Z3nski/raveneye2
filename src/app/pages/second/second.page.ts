@@ -3,7 +3,7 @@ import { StorageConfigToken, Storage } from '@ionic/storage';
 import { IonicStorageModule } from '@ionic/storage';
 import { stringify } from 'querystring';
 import { R3TargetBinder } from '@angular/compiler';
-import { currentId } from 'async_hooks';
+
 
 @Component({
   selector: 'app-second',
