@@ -1,0 +1,73 @@
+.welcome-card img {
+    max-height: 35vh;
+    overflow: hidden;
+  }
+  ion-card{
+    margin-top: 0 ;
+    margin-bottom:0 ;
+    margin-left:0;
+    margin-right:0;
+    width: 100%;
+    height: 100%
+  
+  }
+  ion-grid{
+      height: 100%;
+  }
+.row{
+    height: 10.5%; 
+
+    
+}   
+ion-button{
+    height: 90%;
+    width: 100%;
+
+
+}
+
+.goalRow{
+    height:35%;
+    ion-button{
+        height: 100%;
+        width: 100%;
+    }
+    
+    
+}
+
+.oneTimeRow{
+  height: 25% ;
+}
+ion-segment-button{
+    --indicator-color: 
+    #989aa2;
+}
+.stageRow{
+    height: 35%;
+}
+.scoreRow{
+    height: 25% ;
+}
+.infoRow{
+    height: 15% ; 
+}
+.goalRowAction{
+    height: 25%;
+    ion-button{
+        width: 100%;
+        height: 100%;
+    }
+}
+.pickRow{
+    height: 20%;
+    ion-button{
+        width: 100%;
+        height: 100%;
+    }
+}
+.nextBtn{
+    width: 100% ;
+    height: 100% ;
+    position: right;
+}

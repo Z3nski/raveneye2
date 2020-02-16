@@ -1,0 +1,7 @@
+{
+  "name": "sc-app-v5",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

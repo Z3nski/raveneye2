@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>fourth</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid>
+  <ion-row >
+    <ion-col>
+      <ion-card >
+        <ngx-qrcode [qrc-value]="qrdata" qrc-class = "aclass"
+        qrc-errorCorrectionLevel = "L" text-center>
+          
+        </ngx-qrcode>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row  class="row">
+    <ion-col size="6"></ion-col>
+    <ion-col>
+      <ion-button [routerLink]="['/home']" routerDirection="backward"> Back to Home</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

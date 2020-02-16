@@ -1,0 +1,205 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-text-justify" >
+ 
+  <ion-grid >
+    <ion-row  class="infoRow">
+      <ion-col>
+       <ion-list>
+         <ion-item>
+           Team #
+           <ion-chip>
+            {{numArray[1]}}
+           </ion-chip>
+         </ion-item>
+         <ion-item>
+           Alliance
+           <ion-chip>
+            {{numArray[2]}}
+           </ion-chip>
+         </ion-item>
+       </ion-list>
+      </ion-col>
+      <ion-col>
+        <ion-list>
+          <ion-item>
+            Time: {{timeDisplay}}
+          </ion-item>
+          <ion-item>
+            Match 
+            <ion-chip>
+              {{numArray[3]}}
+              {{numArray[4]}}
+             </ion-chip>
+          </ion-item>
+        </ion-list>
+      </ion-col>
+      
+    </ion-row >
+    <ion-row>
+      <ion-col>
+        <ion-card >
+          <ion-row >
+            <ion-col size="6">
+              <ion-button (click)="crossedInit()"> 
+                Crosed Init Line
+              </ion-button>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button class="ctrlBtn" (click)="wheelSpin($event)">
+                Control Panel 
+              </ion-button>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <ion-button fill="outline">
+                Attempt Climb
+              </ion-button>
+            </ion-col>
+            <ion-col >
+              <ion-segment [(ngModel)]="climbS" (ionChange)="climb($event)" id="c">
+                <ion-segment-button value="Failed " id="c">
+                 <ion-label>
+                   Failed 
+                 </ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="Climb" id="c">
+                  <ion-label>
+                    Climb
+                  </ion-label>
+                </ion-segment-button>
+                <ion-segment-button value="Level" id="c">
+                  <ion-label>
+                    Level
+                  </ion-label>
+                </ion-segment-button>
+              </ion-segment>
+            </ion-col>
+          </ion-row>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row  class="goalRow">
+     <ion-col>
+      <ion-card >
+        <ion-row class="pickRow">
+          <ion-col>
+            <ion-button (click)="ballPickUp($event)">
+              Picked Up Ball
+            </ion-button>
+          </ion-col>
+          <ion-col>
+            <ion-button color="danger" (click)="ballDropped($event)">
+              Failed
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row class="goalRowAction">
+          <ion-col size="10">
+            <ion-button (click)="innerScore($event)">
+              Scored Inner Port
+            </ion-button>
+          </ion-col>
+          <ion-col  size="2" (click)="outerInnerFail($event)">
+            <ion-button color="danger">
+              <ion-icon name="close-circle" ></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row class="goalRowAction">
+          <ion-col size="10">
+            <ion-button (click)="outerScore($event)">
+              Scored Outer Port
+            </ion-button>
+          </ion-col>
+          <ion-col size="2" (click)="outerInnerFail($event)">
+            <ion-button color="danger">
+               <ion-icon name="close-circle" ></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row class="goalRowAction">
+          <ion-col size="10">
+            <ion-button (click)="lowerScore($event)">
+              Scored Lower Port
+            </ion-button>
+          </ion-col>
+          <ion-col  size="2" >
+            <ion-button color="danger" (click)="lowerFail($event)"> 
+              <ion-icon name="close-circle" ></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+         </ion-card>
+     </ion-col>
+    </ion-row>
+    <ion-row >
+      <ion-col>
+        <ion-card>
+          <ion-row >
+            <ion-col>
+              <ion-segment [(ngModel)]="stage" (ionChange)="stageInt($event)">
+                <ion-col>
+                  <ion-segment-button  value="1">
+                    Stage 1
+                  </ion-segment-button>
+                </ion-col>
+                <ion-col>
+                 <ion-segment-button  value="2">
+                   Stage 2
+                 </ion-segment-button>
+               </ion-col>
+               <ion-col>
+                 <ion-segment-button  value="3">
+                    Stage 3
+                 </ion-segment-button>
+               </ion-col>
+              </ion-segment>
+            </ion-col>
+           </ion-row>
+           <ion-row >
+             <ion-col>
+               <ion-row>
+                 <ion-col>
+                   <ion-button (click)="trenchRun($event)">
+                     Trench Run
+                   </ion-button>
+                 </ion-col>
+                 <ion-col>
+                   <ion-button>
+                     Defense
+                   </ion-button>
+                 </ion-col>
+               </ion-row>
+             </ion-col>
+           </ion-row>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row text-right>
+      <ion-col size="4">
+        <ion-button [routerLink]="['/home']" routerLinkActive="router-link-active">
+          Back
+        </ion-button>
+      </ion-col>
+      <ion-col size="4">
+      </ion-col>
+      <ion-col size="4">
+        <ion-button [routerLink]="['/third']" routerLinkActive="router-link-active" routerDirection="forward" class="nextBtn" *ngIf="this.isButtonVisible" float-right>
+          Next 
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  
+</ion-content>

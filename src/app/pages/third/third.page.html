@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>third</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-card text-center>
+        <ion-card-header >
+          Is this Information Correct?
+        </ion-card-header>
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+             <ion-label>
+               Name: 
+             </ion-label>
+             <ion-input clearInput [value]="numArray[0]"  >
+
+            </ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                Team Number: 
+              </ion-label>
+              <ion-input clearInput [value]="numArray[1]">
+ 
+             </ion-input>
+             </ion-item>
+             <ion-item>
+              <ion-chip>
+                <ion-label>
+                  Alliance: 
+                </ion-label>
+              </ion-chip>
+              <ion-input clearInput [value]="numArray[2]">
+ 
+             </ion-input>
+             </ion-item>
+             <ion-item>
+              <ion-label>
+                MatchType: 
+              </ion-label>
+              <ion-input clearInput [value]="numArray[3]">
+ 
+             </ion-input>
+             </ion-item>
+             <ion-item>
+              <ion-label>
+                Match Number: 
+              </ion-label>
+              <ion-input clearInput [value]="numArray[4]">
+ 
+             </ion-input>
+             </ion-item>
+             <ion-item>
+              <ion-label>
+                Win?: 
+              </ion-label>
+              <ion-input clearInput [value]="numArray[5]">
+ 
+             </ion-input>
+             </ion-item>
+            <ion-row>
+              <ion-col size="8"></ion-col>
+              <ion-col>
+               <ion-button (click)="save($event)">
+                 Save
+               </ion-button>
+              </ion-col>
+            </ion-row>
+          </ion-list>
+        </ion-card-content>
+        
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col>
+      <ion-card class="field" text-center>
+        <ion-card-header>
+          Additional Comments
+        </ion-card-header>
+        <ion-card-content>
+          <img src='/assets/picture/field.png'/>
+          <div class="card-title">
+            <ion-button fill="clear">
+              HelloS
+            </ion-button>
+          </div>
+          <div class="card-subtitle">Subtitle 1</div>
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="8">
+    </ion-col>
+    <ion-col>
+      <ion-button [routerLink]="['/fourth']" routerDirection="forward"> Next</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+  
+</ion-content>
