@@ -17,19 +17,19 @@
                 <ion-label>
                   Name
                 </ion-label>
-                <ion-input class="teamNum" [(ngModel)]="name" (ionChange)="nameStore($event)">
+                <ion-input class="teamNum" [(ngModel)]="name" (ionChange)="nameStore()">
                 </ion-input>
               </ion-item>
               <ion-item>
                 <ion-label>
                   Team Number
                 </ion-label>
-                <ion-input class="teamNum" [(ngModel)]="teamNum" (ionChange)="teamNumStore($event)">
+                <ion-input class="teamNum" [(ngModel)]="teamNum" (ionChange)="teamNumStore()">
   
                 </ion-input>
               </ion-item>
               <ion-item>
-                <ion-segment  [(ngModel)]="alliance" (ionChange)="allianceStore($event)">
+                <ion-segment  [(ngModel)]="alliance" (ionChange)="allianceStore()">
                  <ion-grid>
                    <ion-row>
                     <ion-label>
@@ -74,7 +74,7 @@
                 </ion-segment>
               </ion-item>
               <ion-item>
-                <ion-segment class="matchType" [(ngModel)]="matchType" (ionChange)="matchTypeStore($event)">
+                <ion-segment class="matchType" [(ngModel)]="matchType" (ionChange)="matchTypeStore()">
                   <ion-grid>
                     <ion-row>
                       <ion-label>
@@ -115,12 +115,12 @@
                 <ion-label>
                   Match Number
                 </ion-label>
-                <ion-input type="number" class="matchNum" [(ngModel)]="matchNum" (ionChange)="matchNumStore($event)">
+                <ion-input type="number" class="matchNum" [(ngModel)]="matchNum" (ionChange)="matchNumStore()">
   
                 </ion-input>
               </ion-item>
               <ion-item>
-                <ion-segment  [(ngModel)]="win" (ionChange)="winStore($event)">
+                <ion-segment  [(ngModel)]="win" (ionChange)="winStore()">
                   <ion-grid>
                     <ion-row>
                       <ion-label>

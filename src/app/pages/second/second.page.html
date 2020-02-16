@@ -54,7 +54,7 @@
               </ion-button>
             </ion-col>
             <ion-col size="6">
-              <ion-button class="ctrlBtn" (click)="wheelSpin($event)">
+              <ion-button class="ctrlBtn" (click)="wheelSpin()">
                 Control Panel 
               </ion-button>
             </ion-col>
@@ -66,7 +66,7 @@
               </ion-button>
             </ion-col>
             <ion-col >
-              <ion-segment [(ngModel)]="climbS" (ionChange)="climb($event)" id="c">
+              <ion-segment [(ngModel)]="climbS" (ionChange)="climb()" id="c">
                 <ion-segment-button value="Failed " id="c">
                  <ion-label>
                    Failed 
@@ -93,23 +93,23 @@
       <ion-card >
         <ion-row class="pickRow">
           <ion-col>
-            <ion-button (click)="ballPickUp($event)">
+            <ion-button (click)="ballPickUp()">
               Picked Up Ball
             </ion-button>
           </ion-col>
           <ion-col>
-            <ion-button color="danger" (click)="ballDropped($event)">
+            <ion-button color="danger" (click)="ballDropped()">
               Failed
             </ion-button>
           </ion-col>
         </ion-row>
         <ion-row class="goalRowAction">
           <ion-col size="10">
-            <ion-button (click)="innerScore($event)">
+            <ion-button (click)="innerScore()">
               Scored Inner Port
             </ion-button>
           </ion-col>
-          <ion-col  size="2" (click)="outerInnerFail($event)">
+          <ion-col  size="2" (click)="outerInnerFail()">
             <ion-button color="danger">
               <ion-icon name="close-circle" ></ion-icon>
             </ion-button>
@@ -117,11 +117,11 @@
         </ion-row>
         <ion-row class="goalRowAction">
           <ion-col size="10">
-            <ion-button (click)="outerScore($event)">
+            <ion-button (click)="outerScore()">
               Scored Outer Port
             </ion-button>
           </ion-col>
-          <ion-col size="2" (click)="outerInnerFail($event)">
+          <ion-col size="2" (click)="outerInnerFail()">
             <ion-button color="danger">
                <ion-icon name="close-circle" ></ion-icon>
             </ion-button>
@@ -129,12 +129,12 @@
         </ion-row>
         <ion-row class="goalRowAction">
           <ion-col size="10">
-            <ion-button (click)="lowerScore($event)">
+            <ion-button (click)="lowerScore()">
               Scored Lower Port
             </ion-button>
           </ion-col>
           <ion-col  size="2" >
-            <ion-button color="danger" (click)="lowerFail($event)"> 
+            <ion-button color="danger" (click)="lowerFail()"> 
               <ion-icon name="close-circle" ></ion-icon>
             </ion-button>
           </ion-col>
@@ -147,7 +147,7 @@
         <ion-card>
           <ion-row >
             <ion-col>
-              <ion-segment [(ngModel)]="stage" (ionChange)="stageInt($event)">
+              <ion-segment [(ngModel)]="stage" (ionChange)="stageInt()">
                 <ion-col>
                   <ion-segment-button  value="1">
                     Stage 1
@@ -170,7 +170,7 @@
              <ion-col>
                <ion-row>
                  <ion-col>
-                   <ion-button (click)="trenchRun($event)">
+                   <ion-button (click)="trenchRun()">
                      Trench Run
                    </ion-button>
                  </ion-col>

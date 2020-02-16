@@ -25,7 +25,7 @@ trench : number = 0;
 public numArray = [];
 public timeLeft: number = 0.00;
 public timeDisplay: number = 0.00;
-private isButtonVisible = false; 
+public isButtonVisible = false;
 interval;
 climbS: string; 
 climbStat = 0;
