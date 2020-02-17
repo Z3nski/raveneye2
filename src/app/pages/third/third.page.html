@@ -18,7 +18,7 @@
              <ion-label>
                Name: 
              </ion-label>
-             <ion-input clearInput [value]="numArray[0]"  >
+             <ion-input clearInput [value]="numArray[0]" [(ngModel)]="newName" >
 
             </ion-input>
             </ion-item>
@@ -26,7 +26,7 @@
               <ion-label>
                 Team Number: 
               </ion-label>
-              <ion-input clearInput [value]="numArray[1]">
+              <ion-input clearInput [value]="numArray[1]" [(ngModel)]="newNum">
  
              </ion-input>
              </ion-item>
@@ -36,7 +36,7 @@
                   Alliance: 
                 </ion-label>
               </ion-chip>
-              <ion-input clearInput [value]="numArray[2]">
+              <ion-input clearInput [value]="numArray[2]" [(ngModel)]="newAl">
  
              </ion-input>
              </ion-item>
@@ -44,7 +44,7 @@
               <ion-label>
                 MatchType: 
               </ion-label>
-              <ion-input clearInput [value]="numArray[3]">
+              <ion-input clearInput [value]="numArray[3]" [(ngModel)]="newMatch">
  
              </ion-input>
              </ion-item>
@@ -52,7 +52,7 @@
               <ion-label>
                 Match Number: 
               </ion-label>
-              <ion-input clearInput [value]="numArray[4]">
+              <ion-input clearInput [value]="numArray[4]" [(ngModel)]="newMatchNum">
  
              </ion-input>
              </ion-item>
@@ -60,7 +60,7 @@
               <ion-label>
                 Win?: 
               </ion-label>
-              <ion-input clearInput [value]="numArray[5]">
+              <ion-input clearInput [value]="numArray[5]" [(ngModel)]="newWin">
  
              </ion-input>
              </ion-item>

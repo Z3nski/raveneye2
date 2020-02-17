@@ -8,6 +8,7 @@ import { SecondPageRoutingModule } from './second-routing.module';
 
 import { SecondPage } from './second.page';
 import { IonicStorageModule } from '@ionic/storage';
+import { PopoverComponent } from 'src/app/popover/popover.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { IonicStorageModule } from '@ionic/storage';
     SecondPageRoutingModule,
     IonicStorageModule.forRoot()
   ],
-  declarations: [SecondPage]
+  entryComponents:[PopoverComponent],
+  declarations: [SecondPage, PopoverComponent]
 })
 export class SecondPageModule {}

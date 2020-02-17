@@ -11,27 +11,39 @@ numArray = [];
 newArray = [];
 newName: string ;
 newNum: string ;
-newAl : string ;
+newAl: string ;
 newMatch: string ;
-newMatchNum: string; 
+newMatchNum: string;
 newWin: string ;
   constructor(public storage: Storage) { }
 
   ngOnInit() {
-    let matchArray = ['name','teamNum','alliance','matchType','matchNum','win']
+    const matchArray = ['name', 'teamNum', 'alliance', 'matchType', 'matchNum', 'win'];
     for (let i = 0; i < matchArray.length; i++) {
-      this.storage.get(matchArray[i]).then((val)=>{
-        this.numArray.push(val); 
-        //console.log(val);
-      })
+      this.storage.get(matchArray[i]).then((val) => {
+        this.numArray.push(val);
+        // console.log(val);
+      });
       }
-      
+
   }
-  save(){
-    let matchArray = ['name','teamNum','alliance','matchType','matchNum','win']
-    let newArray = [this.newName, this.newNum, this.newAl, this.newMatch, this.newMatchNum, this.newWin]
-    for (let i = 0; i < newArray.length; i++) {
-      this.storage.set(matchArray[i], newArray[i]);
-      }
+  save() {
+    let tArray = [];
+    const matchArray = ['name', 'teamNum', 'alliance', 'matchType', 'matchNum', 'win'];
+    const newArray = [this.newName, this.newNum, this.newAl, this.newMatch, this.newMatchNum, this.newWin];
+    this.storage.get('matchData').then((val) => {
+        tArray = val ;
+        for (let i = 0; i < 6; i++) {
+          if(newArray[i] !== undefined){
+            tArray[i] = newArray[i];
+            console.log(tArray[i]);
+          }
+
+        }
+        this.storage.set('matchData', tArray);
+        console.log(tArray);
+      });
+
+
   }
 }

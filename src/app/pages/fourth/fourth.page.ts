@@ -8,7 +8,6 @@ import { Storage } from '@ionic/storage';
 })
 export class FourthPage implements OnInit {
 qrdata: string ;
-data: string = "https.//linustechtips.com"
   constructor(public storage: Storage) { }
 
   ngOnInit() {

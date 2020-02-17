@@ -10,39 +10,47 @@ import {Router} from '@angular/router';
 })
 export class HomePage {
 
-  constructor(public storage:Storage, public router: Router) {
+  constructor(public storage: Storage, public router: Router) {
   }
+ public  fillI = 0;
   teamNum: string ;
-  alliance: string ; 
+  allianceColor: string ;
+  allianceNum: string ;
   matchType: string ;
   matchNum: string ;
   win: string ;
-  name: string ; 
-  nameStore(){
+  name: string ;
+  public colorMode: string = 'danger';
+  nameStore() {
     this.storage.set('name', this.name);
     console.log(this.name);
   }
-  teamNumStore(){
-    let teamNumV = this.teamNum;
-    this.storage.set('teamNum',this.teamNum);
+  teamNumStore() {
+    const teamNumV = this.teamNum;
+    this.storage.set('teamNum', this.teamNum);
     console.log(teamNumV);
 
   }
-  allianceStore(){
-    this.storage.set('alliance',this.alliance);
-    console.log(this.alliance);
+  allianceStore() {
+    if (this.allianceColor === 'R') {
+      this.colorMode = 'danger';
+    }
+    const alliancePlace = this.allianceColor + this.allianceNum ;
+    this.storage.set('alliance', alliancePlace);
+    console.log(alliancePlace);
   }
-  matchTypeStore(){
-    this.storage.set('matchType',this.matchType);
+  matchTypeStore() {
+    this.storage.set('matchType', this.matchType);
     console.log(this.matchType);
   }
-  matchNumStore(){
-    this.storage.set('matchNum',this.matchNum);
+  matchNumStore() {
+    this.storage.set('matchNum', this.matchNum);
     console.log(this.matchNum);
   }
-  winStore(){
-    this.storage.set('win',this.win);
+  winStore() {
+    this.storage.set('win', this.win);
     console.log(this.win);
   }
-  
+
+
 }

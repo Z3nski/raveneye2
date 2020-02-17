@@ -61,7 +61,7 @@
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-button fill="outline">
+              <ion-button [fill]="fillClimb" (click)="attemptClimb()">
                 Attempt Climb
               </ion-button>
             </ion-col>
@@ -175,7 +175,7 @@
                    </ion-button>
                  </ion-col>
                  <ion-col>
-                   <ion-button>
+                   <ion-button (click)="presentPopover($event)" backdrop-dismiss=false class="defenseBtn">
                      Defense
                    </ion-button>
                  </ion-col>
@@ -194,7 +194,7 @@
       <ion-col size="4">
       </ion-col>
       <ion-col size="4">
-        <ion-button [routerLink]="['/third']" routerLinkActive="router-link-active" routerDirection="forward" class="nextBtn" *ngIf="this.isButtonVisible" float-right>
+        <ion-button (click)="submit()" [routerLink]="['/third']" routerLinkActive="router-link-active" routerDirection="forward" class="nextBtn" *ngIf="this.isButtonVisible" float-right>
           Next 
         </ion-button>
       </ion-col>

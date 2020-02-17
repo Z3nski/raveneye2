@@ -3,6 +3,8 @@ import { StorageConfigToken, Storage } from '@ionic/storage';
 import { IonicStorageModule } from '@ionic/storage';
 import { stringify } from 'querystring';
 import { R3TargetBinder } from '@angular/compiler';
+import { PopoverController } from '@ionic/angular';
+import { PopoverComponent } from 'src/app/popover/popover.component';
 
 
 @Component({
@@ -12,103 +14,116 @@ import { R3TargetBinder } from '@angular/compiler';
 })
 export class SecondPage implements OnInit {
 
-  constructor(public storage: Storage) { }
-matchArray: string; 
-initLine: boolean ;
-wheel: number = 0;
+  constructor(public storage: Storage, public popoverController: PopoverController ) { }
+matchArray: string;
+initLine: string ;
+wheel = '0';
 stage: string ;
-pickUp: number = 0; 
-scoreIn: number =0;
-scoreOut: number =0;
-scoreLow: number = 0 ;
-trench : number = 0;
+pickUp = 0;
+scoreIn = 0;
+scoreOut = 0;
+scoreLow = 0 ;
+trench = 0;
 public numArray = [];
-public timeLeft: number = 0.00;
-public timeDisplay: number = 0.00;
+public timeLeft = 1200;
+public timeDisplay = 0.00;
 public isButtonVisible = false;
 interval;
-climbS: string; 
+climbS: string;
+fillClimb = 'outline';
 climbStat = 0;
 public matchDataArray = [];
   ngOnInit() {
-    let matchArray = ['name','teamNum','alliance','matchType','matchNum','win']
+    const matchArray = ['name', 'teamNum', 'alliance', 'matchType', 'matchNum', 'win'];
     for (let i = 0; i < matchArray.length; i++) {
-      this.storage.get(matchArray[i]).then((val)=>{
-        this.numArray.push(val); 
+      this.storage.get(matchArray[i]).then((val) => {
+        this.numArray.push(val);
         this.matchDataArray.push(val);
-        //console.log(val);
-      })
+        // console.log(val);
+      });
       }
-      console.log(this.numArray);
-      
+    console.log(this.numArray);
+
     this.interval = setInterval(() => {
-      if(this.timeLeft < 1500) {
+      if (this.timeLeft < 1500) {
         this.timeLeft++;
-        this.timeDisplay = this.timeLeft /10.00;
-      } else if(this.timeLeft == 1500) {
-        this.submit(); 
+        this.timeDisplay = this.timeLeft / 10.00;
+      } else if (this.timeLeft === 1500) {
+        this.submit();
         this.isButtonVisible = true ;
 
       }
-    },100)
+    }, 100);
     this.storage.remove('matchData');
     }
-  climb(){
-    this.matchDataArray.push(this.timeDisplay,'c', this.climbS);
+  climb() {
+    this.matchDataArray.push(this.timeDisplay.toString(), 'c', this.climbS);
     console.log(this.matchDataArray);
-    
+
     }
-  crossedInit(){
-    this.initLine = true ;
-    this.matchDataArray.push(this.timeDisplay,'1', this.initLine);
+  crossedInit() {
+    this.initLine = 'true' ;
+    this.matchDataArray.push(this.timeDisplay.toString(), '1', this.initLine);
     console.log(this.matchDataArray);
-    
+
   }
-  wheelSpin(){
-    this.wheel ++ ;
-    this.matchDataArray.push(this.timeDisplay,'w', this.wheel);
-    console.log(this.matchDataArray);
-  }     
-  stageInt(){
-    this.matchDataArray.push(this.timeDisplay,'ss', this.stage);
+  wheelSpin() {
+    this.wheel = '1' ;
+    this.matchDataArray.push(this.timeDisplay.toString(), 'w', this.wheel);
     console.log(this.matchDataArray);
   }
-  ballPickUp(){
+  stageInt() {
+    this.matchDataArray.push(this.timeDisplay.toString(), 'ss', this.stage);
+    console.log(this.matchDataArray);
+  }
+  ballPickUp() {
     this.pickUp ++ ;
-    this.matchDataArray.push(this.timeDisplay,'pu', '1');
+    this.matchDataArray.push(this.timeDisplay.toString(), 'pu', '1');
     console.log(this.matchDataArray);
   }
-  innerScore(){
-    this.matchDataArray.push(this.timeDisplay,'s', 'i');
+  innerScore() {
+    this.matchDataArray.push(this.timeDisplay.toString(), 's', 'i');
     console.log(this.matchDataArray);
   }
-  outerScore(){
-    this.matchDataArray.push(this.timeDisplay,'s', 'o');
+  outerScore() {
+    this.matchDataArray.push(this.timeDisplay.toString(), 's', 'o');
     console.log(this.matchDataArray);
   }
-  lowerScore(){
-    this.matchDataArray.push(this.timeDisplay,'s', 'l');
+  lowerScore() {
+    this.matchDataArray.push(this.timeDisplay.toString(), 's', 'l');
     console.log(this.matchDataArray);
   }
-  outerInnerFail(){
-    this.matchDataArray.push(this.timeDisplay, 'f', 'o');
+  outerInnerFail() {
+    this.matchDataArray.push(this.timeDisplay.toString(), 'f', 'o');
     console.log(this.matchDataArray);
   }
-  lowerFail(){
-    this.matchDataArray.push(this.timeDisplay,'f', 'l');
+  lowerFail() {
+    this.matchDataArray.push(this.timeDisplay.toString(), 'f', 'l');
     console.log(this.matchDataArray);
   }
-  ballDropped(){
-    this.matchDataArray.push(this.timeDisplay,'pu', 'f');
+  ballDropped() {
+    this.matchDataArray.push(this.timeDisplay.toString(), 'pu', 'f');
     console.log(this.matchDataArray);
   }
-  trenchRun(){
+  trenchRun() {
     this.trench ++ ;
-    this.matchDataArray.push(this.timeDisplay,'tr', this.trench);
+    this.matchDataArray.push(this.timeDisplay.toString(), 'tr', this.trench.toString());
     console.log(this.matchDataArray);
   }
-  submit(){
-    this.storage.set('matchData',this.matchDataArray);
+   async presentPopover() {
+    this.matchDataArray.push(this.timeDisplay.toString(), 'd', 'st');
+    console.log(this.matchDataArray);
+    const popover = await this.popoverController.create({
+      component: PopoverComponent, event, cssClass: 'custom-popover', backdropDismiss: false
+    });
+    return await popover.present();
   }
- 
+  attemptClimb(){
+    this.fillClimb = 'solid';
+    this.matchDataArray.push(this.timeDisplay.toString(), 'c', 'st');
+    console.log(this.matchDataArray);
+  }
+  submit() {
+    this.storage.set('matchData', this.matchDataArray);
+  }
 }
