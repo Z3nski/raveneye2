@@ -33,6 +33,7 @@ climbS: string;
 fillClimb = 'outline';
 climbStat = 0;
 public matchDataArray = [];
+ngOnInit() {}
   ionViewDidEnter() {
     const matchArray = ['name', 'teamNum', 'alliance', 'matchType', 'matchNum', 'win'];
     for (let i = 0; i < matchArray.length; i++) {
@@ -118,10 +119,10 @@ public matchDataArray = [];
     const popover = await this.popoverController.create({
       component: PopoverComponent, event: ev, cssClass: 'custom-popover', backdropDismiss: false
     });
-    popover.onDidDismiss().then(()=>{
+    popover.onDidDismiss().then(() => {
         this.matchDataArray.push(this.timeDisplay.toString(), 'd', 'en');
         console.log(this.matchDataArray);
-    })
+    });
     return await popover.present();
 
 

@@ -15,7 +15,7 @@ newAl: string ;
 newMatch: string ;
 newMatchNum: string;
   constructor(public storage: Storage) { }
-
+ngOnInit(){}
   ionViewWillEnter() {
     const matchArray = ['name', 'teamNum', 'alliance', 'matchType', 'matchNum', ];
     for (let i = 0; i < matchArray.length; i++) {
