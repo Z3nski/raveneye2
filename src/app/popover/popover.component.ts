@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController, NavController, NavParams } from '@ionic/angular';
 import { SecondPage } from '../pages/second/second.page';
 import { SecondPageModule } from '../pages/second/second.module';
+
 @Component({
   selector: 'app-popover',
   templateUrl: './popover.component.html',
@@ -10,13 +11,14 @@ import { SecondPageModule } from '../pages/second/second.module';
 export class PopoverComponent implements OnInit {
   [x: string]: any;
 
-  constructor(public popoverController: PopoverController) { }
+  constructor(public popoverController: PopoverController, public NavCtrl: NavController, public navParams: NavParams) { }
   public timeLeft = 0.00;
   public timeDisplay = 0.00;
+  array: any;
   ngOnInit() {
     this.interval = setInterval(() => {
       if (this.timeLeft < 1500) {
-        this.timeLeft++;
+        this.timeLeft ++;
         this.timeDisplay = this.timeLeft;
       } else if (this.timeLeft === 1500) {
 
@@ -24,7 +26,6 @@ export class PopoverComponent implements OnInit {
     }, 1000);
   }
   close() {
-    console.log(SecondPage.matchDataArray);
     this.popoverController.dismiss();
   }
 }

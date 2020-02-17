@@ -3,7 +3,7 @@ import { StorageConfigToken, Storage } from '@ionic/storage';
 import { IonicStorageModule } from '@ionic/storage';
 import { stringify } from 'querystring';
 import { R3TargetBinder } from '@angular/compiler';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController, NavController } from '@ionic/angular';
 import { PopoverComponent } from 'src/app/popover/popover.component';
 
 
@@ -14,7 +14,7 @@ import { PopoverComponent } from 'src/app/popover/popover.component';
 })
 export class SecondPage implements OnInit {
 
-  constructor(public storage: Storage, public popoverController: PopoverController ) { }
+  constructor(public storage: Storage, public popoverController: PopoverController, public nav: NavController ) { }
 matchArray: string;
 initLine: string ;
 wheel = '0';
@@ -25,7 +25,7 @@ scoreOut = 0;
 scoreLow = 0 ;
 trench = 0;
 public numArray = [];
-public timeLeft = 1200;
+public timeLeft = 0;
 public timeDisplay = 0.00;
 public isButtonVisible = false;
 interval;
@@ -33,7 +33,7 @@ climbS: string;
 fillClimb = 'outline';
 climbStat = 0;
 public matchDataArray = [];
-  ngOnInit() {
+  ionViewDidEnter() {
     const matchArray = ['name', 'teamNum', 'alliance', 'matchType', 'matchNum', 'win'];
     for (let i = 0; i < matchArray.length; i++) {
       this.storage.get(matchArray[i]).then((val) => {
@@ -43,7 +43,7 @@ public matchDataArray = [];
       });
       }
     console.log(this.numArray);
-
+    this.timeLeft = 0.00;
     this.interval = setInterval(() => {
       if (this.timeLeft < 1500) {
         this.timeLeft++;
@@ -51,6 +51,7 @@ public matchDataArray = [];
       } else if (this.timeLeft === 1500) {
         this.submit();
         this.isButtonVisible = true ;
+        // this.nav.navigateForward('/third');
 
       }
     }, 100);
@@ -110,15 +111,22 @@ public matchDataArray = [];
     this.matchDataArray.push(this.timeDisplay.toString(), 'tr', this.trench.toString());
     console.log(this.matchDataArray);
   }
-   async presentPopover() {
+   async presentPopover(ev: any) {
     this.matchDataArray.push(this.timeDisplay.toString(), 'd', 'st');
     console.log(this.matchDataArray);
+    const matchDataArrayP = this.matchDataArray;
     const popover = await this.popoverController.create({
-      component: PopoverComponent, event, cssClass: 'custom-popover', backdropDismiss: false
+      component: PopoverComponent, event: ev, cssClass: 'custom-popover', backdropDismiss: false
     });
+    popover.onDidDismiss().then(()=>{
+        this.matchDataArray.push(this.timeDisplay.toString(), 'd', 'en');
+        console.log(this.matchDataArray);
+    })
     return await popover.present();
+
+
   }
-  attemptClimb(){
+  attemptClimb() {
     this.fillClimb = 'solid';
     this.matchDataArray.push(this.timeDisplay.toString(), 'c', 'st');
     console.log(this.matchDataArray);

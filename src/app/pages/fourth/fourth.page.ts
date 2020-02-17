@@ -10,7 +10,7 @@ export class FourthPage implements OnInit {
 qrdata: string ;
   constructor(public storage: Storage) { }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.storage.get('matchData').then((val)=>{
       this.qrdata = val ; 
     })

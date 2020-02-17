@@ -9,18 +9,36 @@ import {Router} from '@angular/router';
   styleUrls: ['home.page.scss']
 })
 export class HomePage {
-
-  constructor(public storage: Storage, public router: Router) {
-  }
- public  fillI = 0;
   teamNum: string ;
+  alliance: string ;
   allianceColor: string ;
   allianceNum: string ;
   matchType: string ;
   matchNum: string ;
   win: string ;
   name: string ;
-  public colorMode: string = 'danger';
+  public colorMode: string = 'danger'; 
+  public  fillI = 0;
+  constructor(public storage: Storage, public router: Router) {
+  }
+  ionViewWillEnter(){
+    this.teamNum = undefined;
+    this.allianceColor = undefined;
+    this.allianceNum = undefined;
+    this.matchType = undefined;
+    this.matchNum = undefined;
+    this.win = undefined;
+   }
+  ionViewDidLeave(){
+    const matchKeys = ['name', 'teamNum', 'alliance', 'matchType', 'matchNum', 'win'];
+    const matchArrayI = [this.name, this.teamNum, this.alliance , this.matchNum, this.win];
+    for (let i = 0; i <= matchArrayI.length; i++) {
+      if (matchArrayI[i] === undefined){
+        this.storage.set(matchKeys[i], 'N/A');
+      }
+      
+    }
+  }
   nameStore() {
     this.storage.set('name', this.name);
     console.log(this.name);
@@ -36,6 +54,7 @@ export class HomePage {
       this.colorMode = 'danger';
     }
     const alliancePlace = this.allianceColor + this.allianceNum ;
+    this.alliance = alliancePlace ;
     this.storage.set('alliance', alliancePlace);
     console.log(alliancePlace);
   }
