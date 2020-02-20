@@ -15,6 +15,7 @@ import { PopoverComponent } from 'src/app/popover/popover.component';
 export class SecondPage implements OnInit {
 
   constructor(public storage: Storage, public popoverController: PopoverController, public nav: NavController ) { }
+infoArray = [];
 matchArray: string;
 initLine: string ;
 wheel = '0';
@@ -38,11 +39,12 @@ ngOnInit() {}
     const matchArray = ['name', 'teamNum', 'alliance', 'matchType', 'matchNum', 'win'];
     for (let i = 0; i < matchArray.length; i++) {
       this.storage.get(matchArray[i]).then((val) => {
-        this.numArray.push(val);
-        this.matchDataArray.push(val);
         // console.log(val);
+        this.infoArray.push(val);
       });
       }
+    this.numArray.push(this.infoArray);
+    this.matchDataArray.push(this.infoArray);
     console.log(this.numArray);
     this.timeLeft = 0.00;
     this.interval = setInterval(() => {
@@ -59,69 +61,81 @@ ngOnInit() {}
     this.storage.remove('matchData');
     }
   climb() {
-    this.matchDataArray.push(this.timeDisplay.toString(), 'c', this.climbS);
+    const climbArray = [this.timeDisplay.toString(), 'c', this.climbS];
+    this.matchDataArray.push(climbArray);
     console.log(this.matchDataArray);
 
     }
   crossedInit() {
     this.initLine = 'true' ;
-    this.matchDataArray.push(this.timeDisplay.toString(), '1', this.initLine);
+    const initArray = [this.timeDisplay.toString(), '1', this.initLine];
+    this.matchDataArray.push(initArray);
     console.log(this.matchDataArray);
 
   }
   wheelSpin() {
     this.wheel = '1' ;
-    this.matchDataArray.push(this.timeDisplay.toString(), 'w', this.wheel);
+    const wheelArray = [this.timeDisplay.toString(), 'w', this.wheel];
+    this.matchDataArray.push(wheelArray);
     console.log(this.matchDataArray);
   }
   stageInt() {
-    this.matchDataArray.push(this.timeDisplay.toString(), 'ss', this.stage);
+    const stageArray = [this.timeDisplay.toString(), 'ss', this.stage];
+    this.matchDataArray.push(stageArray);
     console.log(this.matchDataArray);
   }
   ballPickUp() {
     this.pickUp ++ ;
-    this.matchDataArray.push(this.timeDisplay.toString(), 'pu', '1');
+    const ballArray = [this.timeDisplay.toString(), 'pu', '1'];
+    this.matchDataArray.push(ballArray);
     console.log(this.matchDataArray);
   }
   innerScore() {
-    this.matchDataArray.push(this.timeDisplay.toString(), 's', 'i');
+    const iscoreArray = [this.timeDisplay.toString(), 's', 'i'];
+    this.matchDataArray.push(iscoreArray);
     console.log(this.matchDataArray);
   }
   outerScore() {
-    this.matchDataArray.push(this.timeDisplay.toString(), 's', 'o');
+    const oscoreArray = [this.timeDisplay.toString(), 's', 'o'];
+    this.matchDataArray.push(oscoreArray);
     console.log(this.matchDataArray);
   }
   lowerScore() {
-    this.matchDataArray.push(this.timeDisplay.toString(), 's', 'l');
+    const lscoreArray = [this.timeDisplay.toString(), 's', 'l'];
+    this.matchDataArray.push(lscoreArray);
     console.log(this.matchDataArray);
   }
   outerInnerFail() {
-    this.matchDataArray.push(this.timeDisplay.toString(), 'f', 'o');
+    const oiFailArray = [this.timeDisplay.toString(), 'f', 'o'];
+    this.matchDataArray.push(oiFailArray);
     console.log(this.matchDataArray);
   }
   lowerFail() {
-    this.matchDataArray.push(this.timeDisplay.toString(), 'f', 'l');
+    const lFailArray = [this.timeDisplay.toString(), 'f', 'l'];
+    this.matchDataArray.push(lFailArray);
     console.log(this.matchDataArray);
   }
   ballDropped() {
-    this.matchDataArray.push(this.timeDisplay.toString(), 'pu', 'f');
+    const dropArray = [this.timeDisplay.toString(), 'pu', 'f'];
+    this.matchDataArray.push(dropArray);
     console.log(this.matchDataArray);
   }
   trenchRun() {
     this.trench ++ ;
-    this.matchDataArray.push(this.timeDisplay.toString(), 'tr', this.trench.toString());
+    const trenchArray = [this.timeDisplay.toString(), 'tr', this.trench.toString()];
+    this.matchDataArray.push(trenchArray);
     console.log(this.matchDataArray);
   }
    async presentPopover(ev: any) {
-    this.matchDataArray.push(this.timeDisplay.toString(), 'd', 'st');
+    this.matchDataArray.push([this.timeDisplay.toString(), 'd', 'st']);
     console.log(this.matchDataArray);
-    const matchDataArrayP = this.matchDataArray;
     const popover = await this.popoverController.create({
       component: PopoverComponent, event: ev, cssClass: 'custom-popover', backdropDismiss: false
     });
     popover.onDidDismiss().then(() => {
-        this.matchDataArray.push(this.timeDisplay.toString(), 'd', 'en');
-        console.log(this.matchDataArray);
+      const dArray = [this.timeDisplay.toString(), 'd', 'en'];
+      this.matchDataArray.push(dArray);
+      console.log(this.matchDataArray);
     });
     return await popover.present();
 
@@ -129,7 +143,7 @@ ngOnInit() {}
   }
   attemptClimb() {
     this.fillClimb = 'solid';
-    this.matchDataArray.push(this.timeDisplay.toString(), 'c', 'st');
+    this.matchDataArray.push([this.timeDisplay.toString(), 'c', 'st']);
     console.log(this.matchDataArray);
   }
   submit() {

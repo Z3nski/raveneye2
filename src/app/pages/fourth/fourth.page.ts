@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { checkServerIdentity } from 'tls';
 
 @Component({
   selector: 'app-fourth',
@@ -11,9 +12,9 @@ qrdata: string ;
   constructor(public storage: Storage) { }
 ngOnInit(){}
   ionViewWillEnter() {
-    this.storage.get('matchData').then((val)=>{
-      this.qrdata = val ; 
-    })
+    this.storage.get('matchData').then((val) => {
+      this.qrdata = val.join('\r');
+    });
   }
 
 }
