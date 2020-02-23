@@ -17,11 +17,11 @@ export class HomePage {
   matchNum: string ;
   win: string ;
   name: string ;
-  public colorMode: string = 'danger'; 
+  public colorMode = 'danger';
   public  fillI = 0;
   constructor(public storage: Storage, public router: Router) {
   }
-  ionViewWillEnter(){
+  ionViewWillEnter() {
     this.teamNum = undefined;
     this.allianceColor = undefined;
     this.allianceNum = undefined;
@@ -29,14 +29,16 @@ export class HomePage {
     this.matchNum = undefined;
     this.win = undefined;
    }
-  ionViewDidLeave(){
+  ionViewWillLeave() {
+    const alliance = this.allianceColor + this.allianceNum ;
     const matchKeys = ['name', 'teamNum', 'alliance', 'matchType', 'matchNum', 'win'];
-    const matchArrayI = [this.name, this.teamNum, this.alliance , this.matchNum, this.win];
+    const matchArrayI = [this.name, this.teamNum, alliance, this.matchType, this.matchNum, this.win];
     for (let i = 0; i <= matchArrayI.length; i++) {
-      if (matchArrayI[i] === undefined){
+      if (matchArrayI[i] === null) {
         this.storage.set(matchKeys[i], 'N/A');
-      }
-      
+      } else {
+       this.storage.set(matchKeys[i], matchArrayI[i]);
+     }
     }
   }
   nameStore() {

@@ -9,8 +9,13 @@
   <ion-row >
     <ion-col>
       <ion-card >
-        <ngx-qrcode [qrc-value]="qrdata" qrc-class = "aclass"
-        qrc-errorCorrectionLevel = "L" text-center>
+        <ngx-qrcode
+        qrc-element-type="string"
+         [qrc-value]="qrdata" 
+         qrc-class="aclass"
+        qrc-errorCorrectionLevel = "L"
+         >
+        
           
         </ngx-qrcode>
       </ion-card>

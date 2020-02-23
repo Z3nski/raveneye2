@@ -19,13 +19,13 @@
          <ion-item>
            Team #
            <ion-chip>
-            {{numArray[1]}}
+            {{infoArray[1]}}
            </ion-chip>
          </ion-item>
          <ion-item>
            Alliance
            <ion-chip>
-            {{numArray[2]}}
+            {{infoArray[2]}}
            </ion-chip>
          </ion-item>
        </ion-list>
@@ -38,8 +38,8 @@
           <ion-item>
             Match 
             <ion-chip>
-              {{numArray[3]}}
-              {{numArray[4]}}
+              {{infoArray[3]}}
+              {{infoArray[4]}}
              </ion-chip>
           </ion-item>
         </ion-list>
@@ -107,7 +107,7 @@
         </ion-row>
         <ion-row class="goalRowAction">
           <ion-col size="10">
-            <ion-button (click)="innerScore()">
+            <ion-button (click)="outerScore()">
               Scored Inner Port
             </ion-button>
           </ion-col>
