@@ -259,13 +259,14 @@ ngOnInit() {}
       this.infoArray[1].toString(), this.infoArray[3].toString() + this.infoArray[4].toString(),
       this.infoArray[0].toString(), this.infoArray[2].toString()];
     const autoArray: string[]  = [
-      JSON.stringify( this.initLine), this.pickUpA.toString(10),
-      this.scoreOA.toString(10), JSON.stringify(this.scoreLA.toString(10)), JSON.stringify(this.missLA.toString()),
-      JSON.stringify(this.missOA.toString())
+      JSON.stringify( this.initLine), this.pickUpA.toString(10), JSON.stringify(this.dropA.toString()),
+      this.scoreOA.toString(10), JSON.stringify(this.scoreLA.toString(10)), JSON.stringify(this.missOA.toString()),
+      JSON.stringify(this.missLA.toString())
     ];
     const TeleOpArray: string[] = [
       JSON.stringify(this.pickUpT.toString()), JSON.stringify(this.dropT.toString()),
      JSON.stringify(this.scoreOT.toString()), JSON.stringify(this.scoreLT.toString()),
+     JSON.stringify(this.missOT.toString()), JSON.stringify(this.missLT.toString()),
      JSON.stringify(this.medAvgCycle[0].toString),
      JSON.stringify(this.medAvgCycle[1].toString)
     ];
@@ -275,12 +276,10 @@ ngOnInit() {}
       JSON.stringify(this.trench.toString())
     ];
     const defenArray = [
-      JSON.stringify(this.defenseArray[0].toString()), JSON.stringify(this.defenseArray[1].toString()), 
-      JSON.stringify(this.defenseArray[2].toString()), JSON.stringify(this.defenseArray[3].toString())
+      JSON.stringify(this.defenseArray[0].toString()), JSON.stringify(this.defenseArray[3].toString()),
+      JSON.stringify(this.stage.toString()), JSON.stringify(this.wheel.toString())
     ];
-    console.log(autoArray);
     this.offArray.push(infArray,autoArray, TeleOpArray, ClimbArray, defenArray);
-    //this.offArray.push(autoArray);
     console.log(this.offArray);
   }
 
