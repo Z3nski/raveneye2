@@ -11,11 +11,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { IonicStorageModule } from '@ionic/storage';
 import {Base64ToGallery} from '@ionic-native/base64-to-gallery';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
+import { RouterModule, PreloadAllModules } from '@angular/router';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot(), NgxQRCodeModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot(), NgxQRCodeModule,
+    ],
   providers: [
     StatusBar,
     SplashScreen,

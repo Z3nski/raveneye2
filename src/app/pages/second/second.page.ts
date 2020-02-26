@@ -20,13 +20,14 @@ matchArray: string;
 public initLine = 'F' ;
 wheel = '0';
 stage: string ;
+run = 0;
 // all Auto properties
- pickUpA= 0;
-  dropA= 0;
-  scoreOA= 0;
+ pickUpA = 0;
+  dropA = 0;
+  scoreOA = 0;
   missOA = 0;
-  scoreLA= 0;
-  missLA =0;
+  scoreLA = 0;
+  missLA = 0;
 // Teleop properties
 pickUpT = 0;
 dropT = 0;
@@ -37,19 +38,21 @@ missLT = 0;
 trench = 0;
 // cycleArray = [timeStampSt, balls picked up, timeStampEn, balls attempted to score]
 cycleArray = [0, 0, 0, 0];
-cycleDataArray = [];
+cycleDataArray = [0, 0];
 // missArray = [Auto Outer Missed, TeleOp Outer Missed, Auto Lower Missed, TeleOp Lower Missed]
 medAvgCycle = [0, 0];
 missArray = [0, 0, 0, 0];
 climbArray = [0, 0, 0];
 defenseArray = [0, 0, 0, 0];
+parkS = 'F';
 public numArray = [];
 public timeLeft = 0.00;
 public timeDisplay = 0.00;
 public isButtonVisible = false;
 interval;
-climbS = '';
+climbS = 'F';
 fillClimb = 'outline';
+fillPark = 'outline';
 climbStat = 0;
 public matchDataArray = [];
 ngOnInit() {}
@@ -64,25 +67,25 @@ ngOnInit() {}
     this.numArray.push(this.infoArray);
     this.matchDataArray.push(this.infoArray);
     console.log(this.numArray);
-    this.timeLeft = 0;
+    this.timeLeft = 1400;
     this.interval = setInterval(() => {
       if (this.timeLeft < 1500) {
         this.timeLeft++;
         this.timeDisplay = this.timeLeft / 10;
 
       } else if (this.timeLeft === 1500) {
-        this.cycleTimeAvgMed();
         this.submit();
         this.isButtonVisible = true ;
         // this.nav.navigateForward('/third');
 
       }
     }, 100);
-    this.storage.remove('matchData');
+    this.storage.remove('official');
     }
-     ionViewDidLeave() {
+     ionViewWillLeave() {
       this.compile();
-      this.storage.set('official', this.offArray);
+      this.run = 1;
+
   }
   climb() {
     this.climbArray[1] = this.timeDisplay;
@@ -91,6 +94,9 @@ ngOnInit() {}
     this.matchDataArray.push(climbArray);
     console.log(this.matchDataArray);
 
+    }
+    park(){
+      this.parkS = 'T';
     }
   crossedInit() {
     this.initLine = 'T' ;
@@ -243,7 +249,8 @@ ngOnInit() {}
       values.sort((a, b) => a - b);
       const lowMiddle = Math.floor((values.length - 1) / 2);
       const highMiddle = Math.ceil((values.length - 1) / 2);
-      this.medAvgCycle[0] = (values[lowMiddle] + values[highMiddle]) / 2;
+      this.medAvgCycle[1] = (values[lowMiddle] + values[highMiddle]) / 2;
+      console.log(this.cycleDataArray[1]);
   }
   attemptClimb() {
     this.fillClimb = 'solid';
@@ -255,32 +262,35 @@ ngOnInit() {}
     this.storage.set('matchData', this.matchDataArray);
   }
   compile() {
+    this.run = 0;
+    this.cycleTimeAvgMed();
     const infArray = [
-      this.infoArray[1].toString(), this.infoArray[3].toString() + this.infoArray[4].toString(),
-      this.infoArray[0].toString(), this.infoArray[2].toString()];
+     this.infoArray[1].toString(), this.infoArray[3].toString() + this.infoArray[4].toString(),
+     this.infoArray[0].toString(), this.infoArray[2].toString()];
     const autoArray: string[]  = [
-      JSON.stringify( this.initLine), this.pickUpA.toString(10), JSON.stringify(this.dropA.toString()),
-      this.scoreOA.toString(10), JSON.stringify(this.scoreLA.toString(10)), JSON.stringify(this.missOA.toString()),
-      JSON.stringify(this.missLA.toString())
-    ];
+     JSON.stringify( this.initLine), this.pickUpA.toString(10), JSON.stringify(this.dropA.toString()),
+     this.scoreOA.toString(10), JSON.stringify(this.scoreLA.toString(10)), JSON.stringify(this.missOA.toString()),
+     JSON.stringify(this.missLA.toString())
+   ];
     const TeleOpArray: string[] = [
-      JSON.stringify(this.pickUpT.toString()), JSON.stringify(this.dropT.toString()),
-     JSON.stringify(this.scoreOT.toString()), JSON.stringify(this.scoreLT.toString()),
-     JSON.stringify(this.missOT.toString()), JSON.stringify(this.missLT.toString()),
-     JSON.stringify(this.medAvgCycle[0].toString),
-     JSON.stringify(this.medAvgCycle[1].toString)
-    ];
+     JSON.stringify(this.pickUpT.toString()), JSON.stringify(this.dropT.toString()),
+    JSON.stringify(this.scoreOT.toString()), JSON.stringify(this.scoreLT.toString()),
+    JSON.stringify(this.missOT.toString()), JSON.stringify(this.missLT.toString()),
+   // JSON.stringify(this.medAvgCycle[0].toString),
+   // JSON.stringify(this.medAvgCycle[1].toString)
+   ];
     const ClimbArray = [
-      JSON.stringify(this.climbArray[0].toString()), JSON.stringify(this.climbArray[1].toString()), 
-      JSON.stringify(this.climbArray[2].toFixed(2)), JSON.stringify(this.climbS.toString()),
-      JSON.stringify(this.trench.toString())
-    ];
+     JSON.stringify(this.climbArray[0].toString()), JSON.stringify(this.climbArray[1].toString()),
+     JSON.stringify(this.climbArray[2].toFixed(2)), JSON.stringify(this.climbS.toString()),
+     JSON.stringify(this.trench.toString())
+   ];
     const defenArray = [
-      JSON.stringify(this.defenseArray[0].toString()), JSON.stringify(this.defenseArray[3].toString()),
-      JSON.stringify(this.stage.toString()), JSON.stringify(this.wheel.toString())
-    ];
-    this.offArray.push(infArray,autoArray, TeleOpArray, ClimbArray, defenArray);
+     JSON.stringify(this.defenseArray[0].toString()), JSON.stringify(this.defenseArray[3].toString()),
+     //JSON.stringify(this.stage.toString()), JSON.stringify(this.wheel.toString()), //JSON.stringify(this.parkS)
+   ];
+    this.offArray.push( autoArray, TeleOpArray, ClimbArray, defenArray);
+    this.storage.set('official', this.offArray);
     console.log(this.offArray);
-  }
 
+   }
 }

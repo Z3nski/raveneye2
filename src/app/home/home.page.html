@@ -92,17 +92,17 @@
                         </ion-segment-button>
                        </ion-col>
                        <ion-col size="3">
-                        <ion-segment-button value="Quart">
+                        <ion-segment-button value="QF">
                           QF
                         </ion-segment-button>
                       </ion-col>
                       <ion-col size="3">
-                        <ion-segment-button value="Semi">
+                        <ion-segment-button value="SF">
                           SF
                         </ion-segment-button>
                       </ion-col>
                       <ion-col size="3">
-                        <ion-segment-button value="Final">
+                        <ion-segment-button value="F">
                           F
                         </ion-segment-button>
                       </ion-col>
@@ -118,29 +118,7 @@
   
                 </ion-input>
               </ion-item>
-              <ion-item>
-                <ion-segment  [(ngModel)]="win" (ionChange)="winStore()">
-                  <ion-grid>
-                    <ion-row>
-                      <ion-label>
-                        Who Will Win?
-                      </ion-label>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col>
-                        <ion-segment-button value="Blue">
-                          Blue
-                        </ion-segment-button>
-                      </ion-col>
-                      <ion-col>
-                        <ion-segment-button value="Red">
-                          Red
-                        </ion-segment-button>
-                      </ion-col>
-                    </ion-row>
-                  </ion-grid>
-                </ion-segment>
-              </ion-item>
+             
             </ion-col>
           </ion-row>
         </ion-grid>

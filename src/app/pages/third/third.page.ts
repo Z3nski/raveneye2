@@ -15,7 +15,7 @@ newAl: string ;
 newMatch: string ;
 newMatchNum: string;
   constructor(public storage: Storage) { }
-ngOnInit(){}
+ngOnInit() {}
   ionViewWillEnter() {
     const matchArray = ['name', 'teamNum', 'alliance', 'matchType', 'matchNum', ];
     for (let i = 0; i < matchArray.length; i++) {
@@ -26,7 +26,17 @@ ngOnInit(){}
       }
 
   }
-  save() {
+  ionViewWillLeave() {
+    this.storage.get('official').then((val) => {
+      const tempArray = val;
+      if (tempArray.indexOf(undefined) !== -1 ){
+        const holder = tempArray.indexOf(undefined);
+        tempArray[holder] = '0';
+        this.storage.set('official', tempArray);
+      }
+    });
+  }
+save() {
     let tArray = [];
     const matchArray = ['name', 'teamNum', 'alliance', 'matchType', 'matchNum', ];
     const newArray = [this.newName, this.newNum, this.newAl, this.newMatch, this.newMatchNum, ];

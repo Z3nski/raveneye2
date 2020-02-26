@@ -11,7 +11,7 @@ export class FourthPage implements OnInit {
 qrdata: string ;
   constructor(public storage: Storage) { }
 ngOnInit() { }
-  ionViewDidEnter() {
+  ionViewWillEnter() {
     this.storage.get('official').then((val) => {
       this.qrdata = val.join();
       console.log(this.qrdata);

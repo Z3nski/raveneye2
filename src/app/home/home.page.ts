@@ -22,19 +22,20 @@ export class HomePage {
   constructor(public storage: Storage, public router: Router) {
   }
   ionViewWillEnter() {
+    this.name = undefined;
     this.teamNum = undefined;
     this.allianceColor = undefined;
     this.allianceNum = undefined;
     this.matchType = undefined;
     this.matchNum = undefined;
-    this.win = undefined;
+    this.win = 'N/A';
    }
-  ionViewWillLeave() {
+  ionViewDidLeave() {
     const alliance = this.allianceColor + this.allianceNum ;
     const matchKeys = ['name', 'teamNum', 'alliance', 'matchType', 'matchNum', 'win'];
     const matchArrayI = [this.name, this.teamNum, alliance, this.matchType, this.matchNum, this.win];
     for (let i = 0; i <= matchArrayI.length; i++) {
-      if (matchArrayI[i] === null) {
+      if (matchArrayI[i] === undefined) {
         this.storage.set(matchKeys[i], 'N/A');
       } else {
        this.storage.set(matchKeys[i], matchArrayI[i]);
