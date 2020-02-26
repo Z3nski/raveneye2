@@ -67,7 +67,7 @@ ngOnInit() {}
     this.numArray.push(this.infoArray);
     this.matchDataArray.push(this.infoArray);
     console.log(this.numArray);
-    this.timeLeft = 1400;
+    this.timeLeft = 0;
     this.interval = setInterval(() => {
       if (this.timeLeft < 1500) {
         this.timeLeft++;
