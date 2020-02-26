@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1582751222221,
+  "timestamp": 1582752782235,
   "index": "https://Z3nski.github.io/raveneye2/index.html",
   "assetGroups": [
     {
@@ -200,6 +200,17 @@
         "https://Z3nski.github.io/raveneye2/98-es5.322e521b0d55257ea75a.js",
         "https://Z3nski.github.io/raveneye2/99-es2015.d830d35ee280c2de151e.js",
         "https://Z3nski.github.io/raveneye2/99-es5.d830d35ee280c2de151e.js",
+        "https://Z3nski.github.io/raveneye2/assets/icon/favicon.png",
+        "https://Z3nski.github.io/raveneye2/assets/icons/icon-128x128.png",
+        "https://Z3nski.github.io/raveneye2/assets/icons/icon-144x144.png",
+        "https://Z3nski.github.io/raveneye2/assets/icons/icon-152x152.png",
+        "https://Z3nski.github.io/raveneye2/assets/icons/icon-192x192.png",
+        "https://Z3nski.github.io/raveneye2/assets/icons/icon-384x384.png",
+        "https://Z3nski.github.io/raveneye2/assets/icons/icon-512x512.png",
+        "https://Z3nski.github.io/raveneye2/assets/icons/icon-72x72.png",
+        "https://Z3nski.github.io/raveneye2/assets/icons/icon-96x96.png",
+        "https://Z3nski.github.io/raveneye2/assets/picture/field.png",
+        "https://Z3nski.github.io/raveneye2/assets/shapes.svg",
         "https://Z3nski.github.io/raveneye2/common-es2015.846d7e3f886cffad6047.js",
         "https://Z3nski.github.io/raveneye2/common-es5.846d7e3f886cffad6047.js",
         "https://Z3nski.github.io/raveneye2/index.html",
@@ -218,19 +229,7 @@
       "name": "assets",
       "installMode": "lazy",
       "updateMode": "prefetch",
-      "urls": [
-        "https://Z3nski.github.io/raveneye2/assets/icon/favicon.png",
-        "https://Z3nski.github.io/raveneye2/assets/icons/icon-128x128.png",
-        "https://Z3nski.github.io/raveneye2/assets/icons/icon-144x144.png",
-        "https://Z3nski.github.io/raveneye2/assets/icons/icon-152x152.png",
-        "https://Z3nski.github.io/raveneye2/assets/icons/icon-192x192.png",
-        "https://Z3nski.github.io/raveneye2/assets/icons/icon-384x384.png",
-        "https://Z3nski.github.io/raveneye2/assets/icons/icon-512x512.png",
-        "https://Z3nski.github.io/raveneye2/assets/icons/icon-72x72.png",
-        "https://Z3nski.github.io/raveneye2/assets/icons/icon-96x96.png",
-        "https://Z3nski.github.io/raveneye2/assets/picture/field.png",
-        "https://Z3nski.github.io/raveneye2/assets/shapes.svg"
-      ],
+      "urls": [],
       "patterns": []
     }
   ],
