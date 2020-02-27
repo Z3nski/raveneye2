@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header style="display: none;">
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -7,7 +7,7 @@
     <ion-row>
       <ion-col size="1">
         <svg width="16px" height="16px" style="display: inline-block; vertical-align: middle;" rel="tooltip" title="" data-original-title="Inner Goal" aria-describedby="tooltip754084">
-          <circle cx="8" cy="8" r="6" fill="none" stroke="white" stroke-width="2"></circle>
+          <circle cx="8" cy="8" r="6" fill="none" stroke="black" stroke-width="2"></circle>
         </svg>
       </ion-col>
       <ion-col size="1">
@@ -17,7 +17,7 @@
        </ion-col>
       <ion-col size="1" class="titleCol">
         <svg width="16px" height="16px" style="display: inline-block; vertical-align: middle;" rel="tooltip" title="" data-original-title="Outer Goal">
-          <path d="M 4.536 2 L 11.464 2 L 14.928 8 L 11.464 14 L 4.536 14 L 1.072 8 Z" fill="none" stroke="white" stroke-width="2"></path>
+          <path d="M 4.536 2 L 11.464 2 L 14.928 8 L 11.464 14 L 4.536 14 L 1.072 8 Z" fill="none" stroke="black" stroke-width="2"></path>
         </svg>
       </ion-col>
       <ion-col size="1">
@@ -27,7 +27,7 @@
       </ion-col>
       <ion-col  size="1.1" class="titleCol">
         <svg width="16px" height="16px" style="display: inline-block; vertical-align: middle;" rel="tooltip" title="Bottom Goal">
-          <rect x="1" y="5" width="14" height="6" fill="none" stroke="white" stroke-width="2"></rect>
+          <rect x="1" y="5" width="14" height="6" fill="none" stroke="black" stroke-width="2"></rect>
         </svg>
       </ion-col>
       <ion-col size="1">
@@ -112,20 +112,24 @@
         <ion-card >
           <ion-row >
             <ion-col size="6">
-              <ion-button (click)="crossedInit()"> 
-                Crosed Init Line
+              <ion-button [fill]="fillinitLine" (click)="crossedInit()"> 
+                Init Line Crossed
               </ion-button>
             </ion-col>
             <ion-col size="6">
               <ion-button class="ctrlBtn" (click)="wheelSpin()">
-                Control Panel 
+                Color Wheel 
+                <ion-chip>
+                  {{wheel}}
+                </ion-chip>
               </ion-button>
             </ion-col>
           </ion-row>
           <ion-row>
             <ion-col>
-              <ion-button [fill]="fillClimb" (click)="attemptClimb()">
-                Attempt Climb
+              <ion-button [fill]="fillClimb" (click)="climbTF()" >
+                Attempt Climb 
+                {{climbSt}}
               </ion-button>
             </ion-col>
             <ion-col>
@@ -162,12 +166,18 @@
         <ion-row class="pickRow">
           <ion-col>
             <ion-button (click)="ballPickUp()">
-              Picked Up Ball
+              Ball Picked Up  
+              <ion-chip>
+                {{pickUpA + pickUpT}}
+              </ion-chip>
             </ion-button>
           </ion-col>
           <ion-col>
             <ion-button color="danger" (click)="ballDropped()">
-              Failed
+              Dropped 
+              <ion-chip>
+                {{dropA + dropT}}
+              </ion-chip>
             </ion-button>
           </ion-col>
         </ion-row>
@@ -175,6 +185,9 @@
           <ion-col size="10">
             <ion-button (click)="outerScore()">
               Scored Outer Port
+              <ion-chip>
+                {{scoreOA+scoreOT}}
+              </ion-chip>
             </ion-button>
           </ion-col>
           <ion-col size="2" (click)="outerInnerFail()">
@@ -186,7 +199,10 @@
         <ion-row class="goalRowAction">
           <ion-col size="10">
             <ion-button (click)="lowerScore()">
-              Scored Lower Port
+              Scored Lower Port 
+              <ion-chip>
+                {{scoreLA + scoreLT}}
+              </ion-chip>
             </ion-button>
           </ion-col>
           <ion-col  size="2" >
@@ -228,11 +244,17 @@
                  <ion-col>
                    <ion-button (click)="trenchRun()">
                      Trench Run
+                     <ion-chip>
+                       {{trench}}
+                     </ion-chip>
                    </ion-button>
                  </ion-col>
                  <ion-col>
                    <ion-button (click)="presentPopover($event)" backdrop-dismiss=false class="defenseBtn">
                      Defense
+                     <ion-chip>
+                       {{defenseArray[0]}}
+                     </ion-chip>
                    </ion-button>
                  </ion-col>
                </ion-row>

@@ -12,11 +12,14 @@ import { IonicStorageModule } from '@ionic/storage';
 import {Base64ToGallery} from '@ionic-native/base64-to-gallery';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { RouterModule, PreloadAllModules } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot(), NgxQRCodeModule,
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, IonicStorageModule.forRoot(),
+     NgxQRCodeModule, ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ],
   providers: [
     StatusBar,
