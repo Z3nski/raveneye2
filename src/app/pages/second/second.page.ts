@@ -18,8 +18,9 @@ export class SecondPage implements OnInit {
 public offArray = [];
 matchArray: string;
 public initLine = 'F' ;
-wheel = '0';
-stage: string ;
+initLineCt = 0;
+wheel = 0;
+stage = '' ;
 run = 0;
 // all Auto properties
  pickUpA = 0;
@@ -38,21 +39,27 @@ missLT = 0;
 trench = 0;
 // cycleArray = [timeStampSt, balls picked up, timeStampEn, balls attempted to score]
 cycleArray = [0, 0, 0, 0];
-cycleDataArray = [0, 0];
+cycleDataArray = [];
 // missArray = [Auto Outer Missed, TeleOp Outer Missed, Auto Lower Missed, TeleOp Lower Missed]
 medAvgCycle = [0, 0];
 missArray = [0, 0, 0, 0];
 climbArray = [0, 0, 0];
 defenseArray = [0, 0, 0, 0];
 parkS = 'F';
+parkO = 0;
 public numArray = [];
 public timeLeft = 0.00;
 public timeDisplay = 0.00;
 public isButtonVisible = false;
 interval;
+climbT = '☑';
+climbF = '';
+climbO = 0;
+climbSt = '';
 climbS = 'F';
 fillClimb = 'outline';
 fillPark = 'outline';
+fillinitLine = 'outline';
 climbStat = 0;
 public matchDataArray = [];
 ngOnInit() {}
@@ -61,13 +68,13 @@ ngOnInit() {}
     for (let i = 0; i < matchArray.length; i++) {
       this.storage.get(matchArray[i]).then((val) => {
          console.log(val);
-         this.infoArray.push(val);
+         this.infoArray.push(val.toString());
       });
       }
     this.numArray.push(this.infoArray);
     this.matchDataArray.push(this.infoArray);
     console.log(this.numArray);
-    this.timeLeft = 0;
+    this.timeLeft = 1445;
     this.interval = setInterval(() => {
       if (this.timeLeft < 1500) {
         this.timeLeft++;
@@ -95,19 +102,49 @@ ngOnInit() {}
     console.log(this.matchDataArray);
 
     }
-    park(){
-      this.parkS = 'T';
+    climbTF() {
+      this.climbO ++;
+      if (this.climbO % 2 !== 0) {
+        this.climbSt = this.climbT;
+        this.fillClimb = 'solid';
+        this.climbArray[0] = this.timeDisplay;
+        this.matchDataArray.push([this.timeDisplay.toString(), 'c', 'st']);
+        console.log(this.matchDataArray);
+      } else {
+        this.climbSt = this.climbF;
+        this.fillClimb = 'outline';
+        this.climbArray[0] = 0;
+        // console.log(this.climbArray[0]);
+      }
+
+    }
+    park() {
+      this.parkO ++ ;
+      if (this.parkO % 2 !== 0) {
+        this.fillPark = 'solid';
+        this.parkS = 'T';
+      } else {
+        this.fillPark = 'outline';
+        this.parkS = 'F';
+      }
     }
   crossedInit() {
-    this.initLine = 'T' ;
-    const initArray = [this.timeDisplay.toString(), 'T', this.initLine];
-    this.matchDataArray.push(initArray);
-    this.storage.set('initLine', this.initLine);
-    console.log(this.matchDataArray);
+    this.initLineCt ++ ;
+    if (this.initLineCt % 2 !== 0) {
+      this.initLine = 'T';
+      const initArray = [this.timeDisplay.toString(), 'T', this.initLine];
+      this.matchDataArray.push(initArray);
+      this.storage.set('initLine', this.initLine);
+      console.log(this.matchDataArray);
+      this.fillinitLine = 'solid';
+    } else {
+      this.fillinitLine = 'outline';
+      this.initLine = 'F';
+    }
 
   }
   wheelSpin() {
-    this.wheel = '1' ;
+    this.wheel ++ ;
     const wheelArray = [this.timeDisplay.toString(), 'w', this.wheel];
     this.matchDataArray.push(wheelArray);
     console.log(this.matchDataArray);
@@ -139,8 +176,8 @@ ngOnInit() {}
       this.scoreOA ++ ;
     } else {
       this.scoreOT ++ ;
+      this.cycleTimeEnd();
     }
-    this.cycleTimeEnd();
     const oscoreArray = [this.timeDisplay.toString(), 's', 'o'];
     this.matchDataArray.push(oscoreArray);
     console.log(this.matchDataArray);
@@ -232,17 +269,19 @@ ngOnInit() {}
       this.cycleDataArray.push( this.cycleArray[2] - this.cycleArray[0]);
       this.cycleArray[1] = 0;
       this.cycleArray[3] = 0;
+      console.log('Current Times ' + this.cycleDataArray);
+      this.cycleTimeAvgMed();
     }
   }
   cycleTimeAvgMed() {
     let totalTime = 0;
     let Avg = 0;
-    for (let i = 0; i < this.cycleDataArray.length; i++) {
-        totalTime = +this.cycleDataArray[i];
-      }
+    totalTime = this.cycleDataArray.reduce((a, b) => a + b, 0);
+    console.log('Total Time ' + totalTime);
     Avg = totalTime / this.cycleDataArray.length ;
     this.medAvgCycle[0] = Avg;
     this.findMedian();
+    console.log('Average ' + this.medAvgCycle[0]);
     }
     findMedian() {
       const values = this.cycleDataArray;
@@ -250,14 +289,16 @@ ngOnInit() {}
       const lowMiddle = Math.floor((values.length - 1) / 2);
       const highMiddle = Math.ceil((values.length - 1) / 2);
       this.medAvgCycle[1] = (values[lowMiddle] + values[highMiddle]) / 2;
-      console.log(this.cycleDataArray[1]);
+     // console.log(this.cycleDataArray[1]);
+      console.log('Median' + this.medAvgCycle[1]);
   }
   attemptClimb() {
-    this.fillClimb = 'solid';
+    // this.fillClimb = 'solid';
     this.climbArray[0] = this.timeDisplay;
     this.matchDataArray.push([this.timeDisplay.toString(), 'c', 'st']);
     console.log(this.matchDataArray);
   }
+
   submit() {
     this.storage.set('matchData', this.matchDataArray);
   }
@@ -265,8 +306,8 @@ ngOnInit() {}
     this.run = 0;
     this.cycleTimeAvgMed();
     const infArray = [
-     this.infoArray[1].toString(), this.infoArray[3].toString() + this.infoArray[4].toString(),
-     this.infoArray[0].toString(), this.infoArray[2].toString()];
+      JSON.stringify(this.infoArray[1].toString()),  JSON.stringify(this.infoArray[3].toString() + this.infoArray[4].toString()),
+      JSON.stringify(this.infoArray[0].toString()),  JSON.stringify(this.infoArray[2].toString())];
     const autoArray: string[]  = [
      JSON.stringify( this.initLine), this.pickUpA.toString(10), JSON.stringify(this.dropA.toString()),
      this.scoreOA.toString(10), JSON.stringify(this.scoreLA.toString(10)), JSON.stringify(this.missOA.toString()),
@@ -276,8 +317,8 @@ ngOnInit() {}
      JSON.stringify(this.pickUpT.toString()), JSON.stringify(this.dropT.toString()),
     JSON.stringify(this.scoreOT.toString()), JSON.stringify(this.scoreLT.toString()),
     JSON.stringify(this.missOT.toString()), JSON.stringify(this.missLT.toString()),
-   // JSON.stringify(this.medAvgCycle[0].toString),
-   // JSON.stringify(this.medAvgCycle[1].toString)
+    JSON.stringify(this.medAvgCycle[0].toString),
+   JSON.stringify(this.medAvgCycle[1].toString)
    ];
     const ClimbArray = [
      JSON.stringify(this.climbArray[0].toString()), JSON.stringify(this.climbArray[1].toString()),
@@ -286,9 +327,12 @@ ngOnInit() {}
    ];
     const defenArray = [
      JSON.stringify(this.defenseArray[0].toString()), JSON.stringify(this.defenseArray[3].toString()),
-     //JSON.stringify(this.stage.toString()), JSON.stringify(this.wheel.toString()), //JSON.stringify(this.parkS)
+     JSON.stringify(this.stage.toString()), JSON.stringify(this.wheel.toString()), JSON.stringify(this.parkS)
    ];
-    this.offArray.push( autoArray, TeleOpArray, ClimbArray, defenArray);
+    this.offArray.push( infArray, 
+      autoArray, TeleOpArray, ClimbArray, defenArray
+      );
+    
     this.storage.set('official', this.offArray);
     console.log(this.offArray);
 
